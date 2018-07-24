@@ -11,6 +11,16 @@ class ControllerGroupContact {
             }
         })
     }
+
+    static show(){
+        GroupContact.showData(function(err,data){
+            if (err) {
+                View.showError(err)
+            }else{
+                View.showData(data)
+            }
+        })
+    }
 }
 
 module.exports = ControllerGroupContact

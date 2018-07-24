@@ -14,6 +14,7 @@ if (command == 'help') {
     console.log(`node main.js editGroup <id> <group_name>`);
     console.log(`node main.js deleteGroup <id>`);
     console.log(`node main.js assign <contactId> <groupId>`);
+    console.log(`node main.js show `);
     
 }else if (command == 'addContact') {
     let name = argv[3]
@@ -45,4 +46,6 @@ if (command == 'help') {
     let contactId = argv[3]
     let groupId = argv[4]
     ControllerGroupContact.assign(contactId,groupId)
+}else if (command == 'show') {
+    ControllerGroupContact.show()
 }

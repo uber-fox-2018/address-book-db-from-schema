@@ -4,7 +4,7 @@ class View {
     }
 
     static showData(data){
-        console.log(data.msg);
+        console.log(data);
     }
 }
 

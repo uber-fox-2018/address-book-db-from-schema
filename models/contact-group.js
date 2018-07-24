@@ -34,6 +34,20 @@ class GroupContact {
             }
         })
     }
+
+    static showData(callback){
+        let query =  `SELECT name,company,phone,email,group_name FROM Contacts INNER JOIN groupContacts
+                      ON Contacts.id = groupContacts.contactId INNER JOIN Groups
+                      ON groupContacts.groupId = Groups.id`
+
+        db.all(query,function(err,data){
+            if (err) {
+                callback(err,null)
+            }else {
+                callback(null,data)
+            }
+        })
+    }
 }
 
 module.exports = GroupContact
