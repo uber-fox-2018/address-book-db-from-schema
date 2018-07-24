@@ -16,12 +16,9 @@ class Contact{
     }
     static delete(data ,namaTable,cb){
         let query = `DELETE FROM ${data[0]}s WHERE id = "${data[1]}"`;
-        // console.log(query);
         
         db.run(query,(err) =>{
             let query = `UPDATE contact_groups SET ${namaTable} = null WHERE ${namaTable} = "${data[1]}"`
-            // console.log(query);
-            
             db.run(query,(err) =>{
                 cb(data)
             })
