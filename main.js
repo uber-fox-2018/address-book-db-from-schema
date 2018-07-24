@@ -52,19 +52,33 @@ class Controller {
     ///////
 
     addGroup() {
+        let name    = this._argv[1];
 
+        this.modelGroup.addContactGroup(name);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     groupList() {
-
+        this.modelGroup.groupList( (data) => {
+            console.log(data);
+        })
     }
 
     updateGroup() {
-
+        let id      = this._argv[1];
+        let name    = this._argv[2];
+        
+        this.modelGroup.updateGroup(id, name);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     deleteGroup() {
-
+        let id      = this._argv[1];
+        this.modelGroup.deleteGroup(id);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     ////////////////
