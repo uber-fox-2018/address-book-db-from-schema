@@ -84,19 +84,35 @@ class Controller {
     ////////////////
 
     addContactGroup() {
+        let contactId    = this._argv[1];
+        let groupId    = this._argv[1];
 
+        this.modelContactGroup.addContactGroup(contactId, groupId);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     contactGroupList() {
-
+        this.modelContactGroup.updateContactGroup( (data) => {
+            console.log(data);
+        })
     }
 
     updateContactGroup() {
-
+        let id      = this._argv[1];
+        let contactId    = this._argv[2];
+        let groupId    = this._argv[2];
+        
+        this.modelContactGroup.updateContactGroup(id, contactId, groupId);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     deleteContactGroup() {
-
+        let id      = this._argv[1];
+        this.modelContactGroup.deleteContactGroup(id);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     help() {
