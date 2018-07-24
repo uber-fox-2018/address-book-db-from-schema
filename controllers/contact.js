@@ -1,5 +1,6 @@
 const Model = require ('../models/contact');
 const View = require ('../views/view');
+let Contact = new Model ()
 
 class Contact {
   static help (){
@@ -21,6 +22,11 @@ class Contact {
     messages.forEach((message) => {
       View.display(message);
     })
+  }
+
+  static insert (inputArr){
+
+    Model.insert (inputArr)
   }
 }
 

@@ -9,7 +9,9 @@ class Contact {
     this.address = address
   }
 
-  insert (){
+  insert (inputArr){
+    
+    db.run (`INSERT INTO Contacts`)
 
   }
 
