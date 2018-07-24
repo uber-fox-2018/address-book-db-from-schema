@@ -3,23 +3,23 @@ const db = require('../db')
 
 class Group {
 
-    static create(name, callback) {
-        let queryCreate = `INSERT INTO Groups (name)
-                           VALUES ("${name}");`
+    static create(groupName, callback) {
+        let queryCreate = `INSERT INTO Groups (groupName)
+                           VALUES ("${groupName}");`
                            db.run(queryCreate, (err) => {
                                if(err) throw err.message;
                            })
-                           callback(null,name)
+                           callback(null,groupName)
     }
 
-    static update (id, name, callback) {
+    static update (id, groupName, callback) {
         let queryUpdate = `UPDATE Groups
-                           SET name = "${name}" 
+                           SET groupName = "${groupName}" 
                            WHERE id = "${id}"`
                            db.run(queryUpdate, (err) => {
                                if(err) throw err.message;
                            })
-                           callback(null, name)
+                           callback(null, groupName)
     }
 
     static delete (id, callback) {
@@ -49,7 +49,7 @@ class Group {
 
         db.serialize(() => {
             for(let i=0; i<groups.length; i++){
-                let query = `INSERT INTO Groups (name) VALUES ("${groups[i].name}")`
+                let query = `INSERT INTO Groups (groupName) VALUES ("${groups[i].groupName}")`
 
                 db.run(query, (err) => {
                     if(err) throw err.message

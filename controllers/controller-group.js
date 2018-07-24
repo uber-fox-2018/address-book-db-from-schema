@@ -3,23 +3,23 @@ const View = require('../view')
 
 class ControllerGroup {
 
-    static createGroup(name) {
-        Group.create(name, (err, name) => {
+    static createGroup(groupName) {
+        Group.create(groupName, (err, groupName) => {
             if(err) {
                 View.showError(err)
             }else {
-                let result = `Create Group data ${name} success`
+                let result = `Create Group data ${groupName} success`
                 View.showResult(result)
             }
         }) 
     }
 
-    static updateGroup(id, name) {
-        Group.update(id, name, (err, name) => {
+    static updateGroup(id, groupName) {
+        Group.update(id, groupName, (err, groupName) => {
             if(err) {
                 View.showError(err)
             }else {
-                let result = `Update Group data ${name} success`
+                let result = `Update Group data ${groupName} success`
                 View.showResult(result)
             }
         })

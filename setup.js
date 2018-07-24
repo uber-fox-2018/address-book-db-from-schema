@@ -20,7 +20,7 @@ class Create {
     static tableGroups() {
         let query = `CREATE TABLE IF NOT EXISTS Groups (
                      id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     name VARCHAR(100)
+                     groupName VARCHAR(100)
                      )`
                      db.run(query, (err) => {
                         if(err) throw err;

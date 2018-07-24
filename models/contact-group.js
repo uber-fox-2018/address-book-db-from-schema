@@ -18,17 +18,26 @@ class ContactGroup {
         })
     }
 
-    static show (name, callback) {
+    static show (groupName, callback) {
         let query = `SELECT name, telp, company, email FROM ContacGroups
                      INNER JOIN Groups
                         ON Groups.id = ContacGroups.groupId
                      INNER JOIN Contacts
                         ON Contacts.id = ContacGroups.contactId
-                     WHERE Groups.name = "${name}"`
+                     WHERE Groups.groupName = "${groupName}"`
                      db.all(query, (err, data) => {
-                        if(err) throw err;
+                        if(err) throw err.message;
                         callback(data)
                      })
+    }
+
+    static assign (contactId, groupId, callback) {
+        let query = `INSERT INTO ContacGroups (contactId, groupId)
+                     VALUES (${contactId}, ${groupId})`
+                     db.run(query, (err) => {
+                         if(err) throw err.message
+                     })
+                     callback(null)
     }
 
 }

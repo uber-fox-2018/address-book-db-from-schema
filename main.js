@@ -32,14 +32,14 @@ if(table == 'contact'){
 //CRUD GROUP
 else if (table == 'group'){
     if(command == 'create') {
-        let name = argv[1]
+        let name = argv[2]
         ControllerGroup.createGroup(name)
     }else if (command == 'update') {
-        let id = argv[1]
-        let name = argv[2]
+        let id = argv[2]
+        let name = argv[3]
         ControllerGroup.updateGroup(id, name)
     }else if (command == 'delete') {
-        let id = argv[1]
+        let id = argv[2]
         ControllerGroup.deleteGroup(id)
     }else if (command == 'show') {
         ControllerGroup.showGroup()
@@ -52,7 +52,11 @@ else if (table == 'contactgroup'){
     if(command == 'transfer') {
         ControllerContactGroup.transferContactGroup()
     }else if(command == 'show') {
-        let name = argv[2]
-        ControllerContactGroup.showGroup(name)
+        let groupName = argv[2]
+        ControllerContactGroup.showGroup(groupName)
+    }else if(command == 'assign') {
+        let contactId = argv[2]
+        let groupId = argv[3]
+        ControllerContactGroup.assignContact(contactId, groupId)
     }
 }
