@@ -35,7 +35,7 @@ class Contacts{
 class Groups{
     static display(result){
         if(result==="error" || result===undefined){
-            console.log("No duplicate! email must be unique");
+            console.log("No duplicate! group name must be unique");
         }else{
             console.log("Data has been saved successfully. Total data : ", result);
         }
@@ -43,7 +43,7 @@ class Groups{
 
     static create(result){
         if(result === "error"){
-            console.log("No duplicate! email must be unique");
+            console.log("No duplicate! group name must be unique");
         }else{
             console.log("Data has been saved successfully. Total data : ", result);
         }
@@ -69,7 +69,7 @@ class Groups{
 class ContactGroups{
     static display(result){
         if(result==="error" || result===undefined){
-            console.log("No duplicate! email must be unique");
+            console.log("Fail!");
         }else{
             console.log("Data has been saved successfully. Total data : ", result);
         }
@@ -77,7 +77,7 @@ class ContactGroups{
 
     static create(result){
         if(result === "error"){
-            console.log("No duplicate! email must be unique");
+            console.log("Fail!");
         }else{
             console.log("Data has been saved successfully. Total data : ", result);
         }

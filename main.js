@@ -11,7 +11,7 @@ const contactGroupData = require("./contactGroups.json")
 // Contact.lastId();
 // Contact.update({name: "Bob"}, {id : 4})
 
-Group.save(groupsData);
+// Group.save(groupsData);
 // Group.create({name: "coding"});
 // Group.lastId();
 // Group.update({name: "advertising"}, {id : 4})
@@ -19,4 +19,4 @@ Group.save(groupsData);
 // ContactGroup.save(contactGroupData);
 // ContactGroup.create({contactId: 2, groupId: 1});
 // ContactGroup.lastId();
-// ContactGroup.update({contactId: 3, groupId: 2}, {id : 4})
+// ContactGroup.update({contactId: 1, groupId: 2}, {id : 4})

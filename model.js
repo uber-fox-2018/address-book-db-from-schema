@@ -73,9 +73,9 @@ class Groups{
     }
 
     static create(obj, cb){
-        let addContact = `INSERT INTO contacts(name, company, phone, email) VALUES (?, ?, ?, ?)`;
+        let addToGroups = `INSERT INTO groups(name) VALUES (?)`;
         db.serialize(()=>{
-            db.run(addContact, [obj.name, obj.company, obj.phone, obj.email], function(err){
+            db.run(addToGroups, [obj.name], function(err){
                 if(err) cb("error");
                 if(!err) cb(this.lastID);
             })  
@@ -84,7 +84,7 @@ class Groups{
     }
 
     static id(cb){
-        let getLastID = `SELECT max(ID) as lastID FROM contacts`;
+        let getLastID = `SELECT max(ID) as lastID FROM groups`;
         db.serialize(()=>{
             db.get(getLastID, (err, data)=>{
                 if(err) cb("error")
@@ -94,7 +94,7 @@ class Groups{
     }
     static update(newValues, whereCondition, cb){
         for(let key in newValues){
-            let query = `UPDATE contacts SET ${key} = "${newValues[key]}" WHERE ID =  ${whereCondition.id}`;
+            let query = `UPDATE groups SET ${key} = "${newValues[key]}" WHERE ID =  ${whereCondition.id}`;
             db.serialize(()=>{
                 db.run(query, function(err){
                     if(!err){
@@ -120,10 +120,10 @@ class Groups{
 
 class ContactGroups{
     static save(objArr, cb){
-        let addContacts = `INSERT INTO contacts(name, company, phone, email) VALUES (?, ?, ?, ?)`;
+        let addToContactGroup = `INSERT INTO contactGroup(contactId, groupId) VALUES (?, ?)`;
         db.serialize(()=>{
-           objArr.forEach(contact=>{
-               db.run(addContacts,[contact.name, contact.company, contact.phone, contact.email], function(err){
+           objArr.forEach(contactGroup=>{
+               db.run(addToContactGroup,[contactGroup.contactId, contactGroup.groupId], function(err){
                     if(err) cb("error");
                     if(!err) cb(this.lastID);
                })
@@ -132,9 +132,9 @@ class ContactGroups{
     }
 
     static create(obj, cb){
-        let addContact = `INSERT INTO contacts(name, company, phone, email) VALUES (?, ?, ?, ?)`;
+        let addToContactGroup = `INSERT INTO contactGroup(contactId, groupId) VALUES (?, ?)`;
         db.serialize(()=>{
-            db.run(addContact, [obj.name, obj.company, obj.phone, obj.email], function(err){
+            db.run(addToContactGroup, [obj.contactId, obj.groupId], function(err){
                 if(err) cb("error");
                 if(!err) cb(this.lastID);
             })  
@@ -143,7 +143,7 @@ class ContactGroups{
     }
 
     static id(cb){
-        let getLastID = `SELECT max(ID) as lastID FROM contacts`;
+        let getLastID = `SELECT max(ID) as lastID FROM contactGroup`;
         db.serialize(()=>{
             db.get(getLastID, (err, data)=>{
                 if(err) cb("error")
@@ -153,7 +153,7 @@ class ContactGroups{
     }
     static update(newValues, whereCondition, cb){
         for(let key in newValues){
-            let query = `UPDATE contacts SET ${key} = "${newValues[key]}" WHERE ID =  ${whereCondition.id}`;
+            let query = `UPDATE contactGroup SET ${key} = "${newValues[key]}" WHERE ID =  ${whereCondition.id}`;
             db.serialize(()=>{
                 db.run(query, function(err){
                     if(!err){
