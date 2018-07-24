@@ -30,8 +30,10 @@ class Contact{
             ViewContact.update(result);
         })
     }
-    static delete(){
-
+    static delete(obj){
+        Contacts.delete(obj, (key, result)=>{
+            ViewContact.delete(obj, key, result);
+        })
     }
 
     // static show(){
@@ -67,10 +69,11 @@ class Group{
         })
     }
     
-    static delete(){
-
+    static delete(obj){
+        Groups.delete(obj, (key, result)=>{
+            ViewGroup.delete(obj, key, result);
+        })
     }
-
     // static show(){
 
     // }
@@ -104,8 +107,10 @@ class ContactGroup{
         })
     }
 
-    static delete(){
-
+    static delete(obj){
+        ContactGroups.delete(obj, (key, result)=>{
+            ViewContactGroup.delete(obj, key, result);
+        })
     }
 
     // static show(){

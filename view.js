@@ -30,6 +30,14 @@ class Contacts{
             console.log("successfully updated")
         }
     }
+
+    static delete(obj, key, result){
+        if(result===0){
+            console.log("nothing to delete");
+        }else{
+            console.log(`successfully deleted ${key} : ${obj[key]}`)
+        }
+    }
 }
 
 class Groups{
@@ -64,6 +72,14 @@ class Groups{
             console.log("successfully updated")
         }
     }
+
+    static delete(obj, key, result){
+        if(result===0){
+            console.log("nothing to delete");
+        }else{
+            console.log(`successfully deleted ${key} : ${obj[key]}`)
+        }
+    }
 }
 
 class ContactGroups{
@@ -96,6 +112,14 @@ class ContactGroups{
             console.log("no changes")
         }else{
             console.log("successfully updated")
+        }
+    }
+
+    static delete(obj, key, result){
+        if(result===0){
+            console.log("nothing to delete");
+        }else{
+            console.log(`successfully deleted ${key} : ${obj[key]}`)
         }
     }
 }

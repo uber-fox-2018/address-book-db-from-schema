@@ -45,8 +45,21 @@ class Contacts{
             })
         }
     }
-    static delete(){
 
+    static delete(obj, cb){
+        let query;
+        for(let key in obj){
+            if(key!=="id"){
+                query = `DELETE FROM contacts WHERE ${key} = "${obj[key]}"`;
+            }else{
+                query = `DELETE FROM contacts WHERE ID = ${obj[key]}`;
+            }
+            db.serialize(()=>{
+                db.run(query, function(err){
+                    if(!err) cb(key, this.changes)
+                })
+            }) 
+        }
     }
 
     // static show(){
@@ -104,8 +117,21 @@ class Groups{
             })
         }
     }
-    static delete(){
 
+    static delete(obj, cb){
+        let query;
+        for(let key in obj){
+            if(key!=="id"){
+                query = `DELETE FROM groups WHERE ${key} = "${obj[key]}"`;
+            }else{
+                query = `DELETE FROM groups WHERE ID = ${obj[key]}`;
+            }
+            db.serialize(()=>{
+                db.run(query, function(err){
+                    if(!err) cb(key, this.changes)
+                })
+            }) 
+        }
     }
 
     // static show(){
@@ -151,6 +177,7 @@ class ContactGroups{
             })
         })
     }
+
     static update(newValues, whereCondition, cb){
         for(let key in newValues){
             let query = `UPDATE contactGroup SET ${key} = "${newValues[key]}" WHERE ID =  ${whereCondition.id}`;
@@ -163,10 +190,22 @@ class ContactGroups{
             })
         }
     }
-    static delete(){
 
+    static delete(obj, cb){
+        let query;
+        for(let key in obj){
+            if(key!=="id"){
+                query = `DELETE FROM contactGroup WHERE ${key} = "${obj[key]}"`;
+            }else{
+                query = `DELETE FROM contactGroup WHERE ID = ${obj[key]}`;
+            }
+            db.serialize(()=>{
+                db.run(query, function(err){
+                    if(!err) cb(key, this.changes)
+                })
+            }) 
+        }
     }
-
     // static show(){
 
     // }
