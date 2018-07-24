@@ -32,11 +32,21 @@ class Controller {
     }
 
     updateContact() {
-
+        let id      = this._argv[1];
+        let name    = this._argv[2];
+        let company = this._argv[3];
+        let phone   = this._argv[4];
+        let email   = this._argv[5];
+        this.modelContact.updateContact(id, name, company, phone, email);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     deleteContact() {
-
+        let id      = this._argv[1];
+        this.modelContact.deleteContact(id);
+        let msg = `Berhasil`;
+        View.Display(msg)
     }
 
     ///////
