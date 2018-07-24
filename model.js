@@ -62,13 +62,17 @@ class Contacts{
         }
     }
 
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
+    static show(cb){
+        let query = `SELECT name, company, phone, email, (SELECT name FROM groups WHERE ID = groupId) AS groupName FROM contacts
+                     JOIN contactGroup
+                     ON contacts.ID = contactGroup.contactId
+                     ORDER BY name`;
+        db.serialize(()=>{
+            db.all(query, (err, data)=>{
+                if(!err) cb(data)
+            })
+        })
+    }
         
 }
 
@@ -134,13 +138,17 @@ class Groups{
         }
     }
 
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
+    static show(cb){
+        let query = `SELECT name, (SELECT name FROM contacts WHERE ID = contactId) AS contactName FROM groups
+                     JOIN contactGroup
+                     ON groups.ID = contactGroup.contactId
+                     ORDER BY name`;
+        db.serialize(()=>{
+            db.all(query, (err, data)=>{
+                if(!err) cb(data)
+            })
+        })
+    }
       
 }
 
@@ -206,13 +214,6 @@ class ContactGroups{
             }) 
         }
     }
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
       
 }
 

@@ -36,13 +36,11 @@ class Contact{
         })
     }
 
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
+    static show(){
+        Contacts.show(result=>{
+            ViewContact.show(result);
+        })
+    }
 }
 
 class Group{
@@ -74,13 +72,11 @@ class Group{
             ViewGroup.delete(obj, key, result);
         })
     }
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
+    static show(){
+        Groups.show(result=>{
+            ViewGroup.show(result);
+        })
+    }
 }
 
 class ContactGroup{
@@ -112,14 +108,6 @@ class ContactGroup{
             ViewContactGroup.delete(obj, key, result);
         })
     }
-
-    // static show(){
-
-    // }
-
-    // static help(){
-
-    // }
 }
 
 module.exports = {

@@ -9,17 +9,19 @@ const contactGroupData = require("./contactGroups.json")
 // Contact.save(contactsData);
 // Contact.create({name: "ben", company: "DDD", phone: "081317644444", email: "ben@gmail.com"});
 // Contact.lastId();
-// Contact.update({name: "Bob"}, {id : 4})
-// Contact.delete({id : 4})
+// Contact.update({name: "Bob"}, {id : 4});
+// Contact.delete({id : 4});
+// Contact.show();
 
 // Group.save(groupsData);
 // Group.create({name: "coding"});
 // Group.lastId();
-// Group.update({name: "advertising"}, {id : 4})
-// Group.delete({id : 5})
+// Group.update({name: "advertising"}, {id : 4});
+// Group.delete({id : 5});
+// Group.show();
 
 // ContactGroup.save(contactGroupData);
 // ContactGroup.create({contactId: 2, groupId: 1});
 // ContactGroup.lastId();
 // ContactGroup.update({contactId: 1, groupId: 2}, {id : 4})
-// ContactGroup.delete({id : 7})
+// ContactGroup.delete({id : 7});

@@ -38,6 +38,10 @@ class Contacts{
             console.log(`successfully deleted ${key} : ${obj[key]}`)
         }
     }
+
+    static show(result){
+        console.log(result);
+    }
 }
 
 class Groups{
@@ -79,6 +83,9 @@ class Groups{
         }else{
             console.log(`successfully deleted ${key} : ${obj[key]}`)
         }
+    }
+    static show(result){
+        console.log(result);
     }
 }
 
