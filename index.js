@@ -5,16 +5,23 @@ const ControllerGroup = ControllerAll.ControllerGroup
 const ControllerContactGroup = ControllerAll.ControllerContactGroup
 const argv = process.argv
 
-let menu = argv[2]
+let tabel = argv[2]
+let menu = argv[3]
 
-//contact
-// ame VARCHAR, office VARCHAR, phone VARCHAR UNIQUE,
-//                  email TEXT UNIQUE
+//CRUD contact
 
-if(menu === 'addContact'){
-    let name = argv[3]
-    let office = argv[4]
-    let phone = argv[5]
-    let email = argv[6]
-    ControllerContact.cc_addContact(name,office,phone,email)
+if(tabel === 'contact'){
+    if(menu === 'add'){
+        let name = argv[4]
+        let office = argv[5]
+        let phone = argv[6]
+        let email = argv[7]
+        ControllerContact.cc_addContact(name,office,phone,email)
+    }else if(menu === 'update') {
+        let name = argv[4]
+        let office = argv[5]
+        let phone = argv[6]
+        let email = argv[7]
+        ControllerContact.cc_updateContact(name,office,phone,email)    
+    }
 }
