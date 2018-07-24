@@ -26,7 +26,9 @@ class Controller {
     }
 
     contactList() {
-
+        this.modelContact.contactList( (data) => {
+            console.log(data);
+        })
     }
 
     updateContact() {
