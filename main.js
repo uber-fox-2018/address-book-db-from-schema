@@ -9,4 +9,6 @@ if(command === 'help' || !command){
     Controller.create(data)
 }else if(command === 'update'){
     Controller.update(data)
+}else if(command === 'delete'){
+    Controller.delete(data)
 }

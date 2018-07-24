@@ -9,13 +9,24 @@ class Contact{
         })
     }
     static update(data,cb){
-        let query = `UPDATE contact SET ${data[1]} = ${data.slice(3).join(' ')} WHERE id = ${data[0]}`
-
+        let query = `UPDATE ${data[0]}s SET "${data[2]}" = "${data.slice(4).join(' ')}" WHERE id = "${data[1]}"`
         db.run(query,(err) =>{
             cb(data)
         })
+    }
+    static delete(data ,namaTable,cb){
+        let query = `DELETE FROM ${data[0]}s WHERE id = "${data[1]}"`;
+        // console.log(query);
         
-        // `UPDATE employee SET login_status = 'true' WHERE id = ${dataLogin.id}`
+        db.run(query,(err) =>{
+            let query = `UPDATE contact_groups SET ${namaTable} = null WHERE ${namaTable} = "${data[1]}"`
+            // console.log(query);
+            
+            db.run(query,(err) =>{
+                cb(data)
+            })
+        })
+                
     }
 }
 
