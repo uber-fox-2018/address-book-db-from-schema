@@ -11,6 +11,7 @@ class Contact {
         this.email = email;
     }
 
+    // add contact in promise
     addContact(name, company, phone, email) {
         this.name = name;
         this.company = company;
@@ -31,11 +32,19 @@ class Contact {
         })
     }
 
-    contactList(cb) {
+    // contact list in promise
+    contactList() {
         let query = `SELECT * FROM ${this.table}`;
-        db.all(query, (err, data) => {
-            cb(data)
+        return new Promise((resolve, reject)=> {
+            db.all(query, (err, data) => {
+                if(!err) {
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
         })
+        
     }
 
     //update in promise
@@ -74,6 +83,7 @@ class Contact {
 		
     }
 
+    // find contact in promise
     findContact(id) {
         this.id = id;
         let query = `SELECT * FROM ${this.table} WHERE id = ${this.id}`;

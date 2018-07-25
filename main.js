@@ -37,10 +37,15 @@ class Controller {
         
     }
 
+    // list contact in promise
     contactList() {
-        this.modelContact.contactList( (data) => {
-            console.log(data);
-        })
+        this.modelContact.contactList()
+            .then((data) => {
+                View.Display(data)
+            })
+            .catch((err)=> {
+                View.Display(err)
+            })
     }
 
     // update in promise
@@ -96,9 +101,7 @@ class Controller {
     addGroup() {
         let name    = this._argv[1];
 
-        this.modelGroup.addContactGroup(name);
-        let msg = `Berhasil`;
-        View.Display(msg)
+        this.modelGroup.addContactGroup(name)
     }
 
     groupList() {
