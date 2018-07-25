@@ -1,6 +1,6 @@
-const ModelContact = require('./model/modelContact.js')
-const ModelGroup = require('./model/modelGroup.js')
-const ModelContactGroup = require('./model/modelContactGroup.js')
+const ModelContact = require('./modelContact.js')
+const ModelGroup = require('./modelGroup.js')
+const ModelContactGroup = require('./modelContactGroup.js')
 
 
 

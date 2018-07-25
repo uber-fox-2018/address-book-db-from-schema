@@ -5,31 +5,27 @@ const db = require('./db.js')
 
 class ModelContact{
     static insertData(){
-        let contact = JSON.parse(fs.readdirSync('./dataRandom.json','utf8'))
+        let contact = JSON.parse(fs.readFileSync('../dataRandom.json','utf8'))
+        // console.log(contact);
+        for (let i in contact) {
+            // let contactInsert = contact[i]
+            // console.log(contact[i]);
+            let name = contact[i].name
+            let office = contact[i].office
+            let phone = contact[i].phone
+            let email = contact[i].email
 
-        for(let i = 0; i < contact.length;i++){
-            let contactInsert = contact[i].split(',')
-            let name = contactInsert[0]
-            let office = contactInsert[1]
-            let phone = contactInsert[2]
-            let email = contactInsert[3]
+            let queryInsert = `INSERT INTO Contacts (name,office,phone,email) 
+                                VALUES ("${name}","${office}","${phone}","${email}")`
 
-        let queryInsert = `INSERT INTO Contacts (name,office,phone,email) 
-                           VALUES ("${name}","${office}","${phone}","${email}")`
-
+            // console.log(queryInsert)
             db.serialize(function(){
-               db.run(queryInsert, function(err){
-                    if(err) throw err
-                
-                })
-            })
+                 db.run(queryInsert, function(err){
+                        if(err) throw err
+                        
+                        })
+                    })
         }
-        db.serialize(function(){
-            db.run(queryInsert, function(err){
-                if(err) throw err
-
-            })
-        })
         
     }
     static mc_addContact(name,office,phone,email, cb){
@@ -58,15 +54,27 @@ class ModelContact{
                 if (err){
                     cb(err,null)
                 } else {
-                    cb(null,)
+                    cb(null,err)
                 }
             })
            
         })
     }
 
+    static mc_removeContact(id,cb){
+        let queryRemove = `DELETE FROM Contacts WHERE id = ${id}`
+
+        db.serialize(function(){
+            db.run(queryRemove, function(err){
+                if(err) throw err.message
+            })
+            cb(null,id)
+        })
+    }
+
 
 }
-insertData()
+
+// ModelContact.insertData()
 
 module.exports = ModelContact

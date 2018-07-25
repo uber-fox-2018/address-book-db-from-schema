@@ -1,4 +1,4 @@
-const ModelAll = require('./model/modelAll.js')
+const ModelAll = require('../model/modelAll.js')
 const ModelContact = ModelAll.ModelContact
 const View = require('../view.js')
 
@@ -9,8 +9,8 @@ class ControllerContact{
             if(err){
                 View.showError(err)
             } else {
-                let data = `add "${data} success"`
-                View.showData(data)
+                let msg = `add "${data} success"`
+                View.showData(msg)
             }
         })
 
@@ -26,6 +26,17 @@ class ControllerContact{
             }
         })
 
+    }
+
+    static cc_removeContact(id){
+        ModelContact.mc_removeContact(id,function(err,id){
+            if(err){
+                View.showError(err)
+            } else {
+                let dataId = `Delete Success`
+                View.showData(dataId)
+            }
+        })
     }
 
 }

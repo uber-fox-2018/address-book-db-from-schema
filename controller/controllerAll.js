@@ -1,9 +1,9 @@
-const ControllerContact = require('./controller/controllerContact.js');
-const ControllerGroup = require('./controller/controllerGroup.js');
-const ControllerContactGroup = require('./controller/controllerContactGroup.js')
+const ControllerContact = require('./controllerContact.js');
+const ControllerGroup = require('./controllerGroup.js');
+const ControllerContactGroup = require('./controllerContactGroup.js')
 
 module.exports = {
-    ControllerContact:ControllerContact,
-    ControllerGroup:ControllerGroup,
-    ControllerContactGroup:ControllerContactGroup
+    ControllerContact: ControllerContact,
+    ControllerGroup: ControllerGroup,
+    ControllerContactGroup: ControllerContactGroup
 }
