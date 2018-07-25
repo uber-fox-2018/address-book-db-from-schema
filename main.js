@@ -17,7 +17,7 @@ if (command == 'help'){
   }
 } else if (command == 'update'){
   if (target == 'contact'){
-
+    Contact.update(input)
   } else if (target == 'group'){
 
   } else if (target == 'contactGroup'){

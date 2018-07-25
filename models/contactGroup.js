@@ -10,4 +10,8 @@ class ContactGroup {
 
 }
 
-module.exports = ContactGroup;
+class Model {
+  
+}
+
+module.exports = Model;

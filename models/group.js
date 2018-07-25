@@ -9,4 +9,8 @@ class Group {
 
 }
 
-module.exports = Group;
+class Model {
+  
+}
+
+module.exports = Model;
