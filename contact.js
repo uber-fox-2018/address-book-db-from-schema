@@ -56,7 +56,8 @@ class Contact {
         let query = `DELETE FROM ${ this.table }  WHERE id = "${ this.id }"`;
         return new Promise((resolve, reject)=> {
             db.run(query, (err) => { 
-                
+                resolve(this.id);
+                reject(err);                
             })
         })
 		

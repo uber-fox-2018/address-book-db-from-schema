@@ -54,12 +54,18 @@ class Controller {
         View.Display(msg)
     }
 
-    
+
     deleteContact() {
         let id      = this._argv[1];
-        this.modelContact.deleteContact(id);
-        let msg = `Berhasil`;
-        View.Display(msg)
+        this.modelContact.deleteContact(id)
+        .then((data)=> {
+            let msg = `Berhasil menghapus id ${data}`;
+            View.Display(msg)
+        })
+        .catch((err) => {
+            View.Display(err)
+        })
+        
     }
 
     // find contact in promise
