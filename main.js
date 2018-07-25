@@ -1,5 +1,5 @@
 const modelContact = require('./contact')
-const modelGroup = require('./contact-group')
+const modelGroup = require('./group')
 const modelGroupContact = require('./contact-group')
 const View = require('./view')
 
@@ -25,19 +25,62 @@ class Controller {
         })
     }
 
-    listContact(){}
+    listContact(){
+        this.contact.readContact((cbRead)=>{
+            View.display(cbRead)
+        })
+    }
 
-    updateContact(){}
+    updateContact(){
+        let id      = this.command[1]
+        let name    = this.command[2]
+        let company = this.command[3]
+        let phone   = this.command[4]
+        let email   = this.command[5]
 
-    deleteContact(){}
+        this.contact.upContact(id, name, company, phone, email, (cbUpdateContact) => {
+            View.display(cbUpdateContact)
+        })
 
-    createGroup(){}
+    }
 
-    listGroup(){}
+    deleteContact(){
+        let id = this.command[1]
 
-    updateGroup(){}
+        this.contact.delContact(id, (cbDeleteContact) => {
+            View.display(cbDeleteContact)
+        })
+    }
 
-    deleteGroup(){}
+    createGroup(){
+        let name = this.command[1]
+
+        this.group.addGroup(name, (cbAddGroup) => {
+            View.display(cbAddGroup)
+        })
+    }
+
+    listGroup(){
+        this.group.readGroup((cbRead) => {
+            View.display(cbRead)
+        })
+    }
+
+    updateGroup(){
+        let id   = this.command[1]
+        let name = this.command[2]
+        this.group.upGroup(id, name, (cbUpdateGroup) => {
+            View.display(cbUpdateGroup)
+        })
+    }
+
+    deleteGroup(){
+        let id = this.command[1]
+
+        this.group.delGroup(id, (cbDeleteGroup) => {
+            View.display(cbDeleteGroup)
+        })
+    }
 
     help(){}
 

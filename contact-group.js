@@ -1,3 +1,5 @@
+const db = require('./conf')
+
 class ContactGroup {
     constructor(){}
 }
