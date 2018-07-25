@@ -11,13 +11,17 @@ class Contact {
         this.email = email;
     }
 
+<<<<<<< HEAD
     // add contact in promise
+=======
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     addContact(name, company, phone, email) {
         this.name = name;
         this.company = company;
         this.phone = phone;
         this.email = email;
         
+<<<<<<< HEAD
         return new Promise((resolve, reject)=> {
             let query = `INSERT INTO ${this.table}(name, company, phoneNumber, email)
                     VALUES("${this.name}", "${this.company}", "${this.phone}", "${this.email}")`;
@@ -48,6 +52,20 @@ class Contact {
     }
 
     //update in promise
+=======
+        let query = `INSERT INTO ${this.table}(name, company, phoneNumber, email)
+                    VALUES("${this.name}", "${this.company}", "${this.phone}", "${this.email}")`;
+        db.run(query)
+    }
+
+    contactList(cb) {
+        let query = `SELECT * FROM ${this.table}`;
+        db.all(query, (err, data) => {
+            cb(data)
+        })
+    }
+
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     updateContact(id, name, company, phone, email) {
         this.id = id;
         this.name = name;
@@ -58,6 +76,7 @@ class Contact {
         let query = `UPDATE ${ this.table } SET 
             name = "${ this.name }", company = "${ this.company }", 
             phoneNumber = "${ this.phone }", email = "${ this.email }"  WHERE id = "${ this.id }"`;
+<<<<<<< HEAD
         return new Promise((resolve, reject)=> {
             db.run(query, function(err) { 
                 if(!err) {
@@ -97,6 +116,15 @@ class Contact {
             })
         })
         
+=======
+		db.run(query, (err) => { })
+    }
+
+    deleteContact(id) {
+        this.id = id;
+        let query = `DELETE FROM ${ this.table }  WHERE id = "${ this.id }"`;
+		db.run(query, (err) => { })
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     }
 
 }

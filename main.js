@@ -14,13 +14,17 @@ class Controller {
         this.routes();
     }
 
+<<<<<<< HEAD
     // add contact in promise
+=======
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     addContact() {
         let name    = this._argv[1];
         let company = this._argv[2];
         let phone   = this._argv[3];
         let email   = this._argv[4];
 
+<<<<<<< HEAD
         this.modelContact.addContact(name, company, phone, email)
         .then((id) => {
             this.modelContact.findContact(id)
@@ -49,12 +53,26 @@ class Controller {
     }
 
     // update in promise
+=======
+        this.modelContact.addContact(name, company, phone, email);
+        let msg = `Berhasil`;
+        View.Display(msg)
+    }
+
+    contactList() {
+        this.modelContact.contactList( (data) => {
+            console.log(data);
+        })
+    }
+
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     updateContact() {
         let id      = this._argv[1];
         let name    = this._argv[2];
         let company = this._argv[3];
         let phone   = this._argv[4];
         let email   = this._argv[5];
+<<<<<<< HEAD
         this.modelContact.updateContact(id, name, company, phone, email)
         .then((data)=> {
             this.modelContact.findContact(id)
@@ -94,6 +112,18 @@ class Controller {
             .catch((err)=> {
                 View.Display(err)
             })
+=======
+        this.modelContact.updateContact(id, name, company, phone, email);
+        let msg = `Berhasil`;
+        View.Display(msg)
+    }
+
+    deleteContact() {
+        let id      = this._argv[1];
+        this.modelContact.deleteContact(id);
+        let msg = `Berhasil`;
+        View.Display(msg)
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     }
 
     ///////
@@ -101,7 +131,13 @@ class Controller {
     addGroup() {
         let name    = this._argv[1];
 
+<<<<<<< HEAD
         this.modelGroup.addContactGroup(name)
+=======
+        this.modelGroup.addContactGroup(name);
+        let msg = `Berhasil`;
+        View.Display(msg)
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     }
 
     groupList() {
@@ -161,7 +197,11 @@ class Controller {
     }
 
     help() {
+<<<<<<< HEAD
         View.help()
+=======
+        console.log("Ntar ke view")
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
     }
 
     routes() {
@@ -180,10 +220,14 @@ class Controller {
             case 'deleteContact':
                 this.deleteContact();
                 break;
+<<<<<<< HEAD
             case 'findContact':
                 this.findContact();
                 break;
                 
+=======
+
+>>>>>>> d2c991271cdd05c20e2dc870cf36e5a414936335
             case 'addGroup':
                 this.addGroup();
                 break;
