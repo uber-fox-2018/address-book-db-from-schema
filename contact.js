@@ -38,6 +38,7 @@ class Contact {
         })
     }
 
+    //update in promise
     updateContact(id, name, company, phone, email) {
         this.id = id;
         this.name = name;
@@ -48,9 +49,19 @@ class Contact {
         let query = `UPDATE ${ this.table } SET 
             name = "${ this.name }", company = "${ this.company }", 
             phoneNumber = "${ this.phone }", email = "${ this.email }"  WHERE id = "${ this.id }"`;
-		db.run(query, (err) => { })
+        return new Promise((resolve, reject)=> {
+            db.run(query, function(err) { 
+                if(!err) {
+                    resolve(this)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+		
     }
 
+    // delete contact promise
     deleteContact(id) {
         this.id = id;
         let query = `DELETE FROM ${ this.table }  WHERE id = "${ this.id }"`;

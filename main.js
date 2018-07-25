@@ -43,18 +43,29 @@ class Controller {
         })
     }
 
+    // update in promise
     updateContact() {
         let id      = this._argv[1];
         let name    = this._argv[2];
         let company = this._argv[3];
         let phone   = this._argv[4];
         let email   = this._argv[5];
-        this.modelContact.updateContact(id, name, company, phone, email);
-        let msg = `Berhasil`;
-        View.Display(msg)
+        this.modelContact.updateContact(id, name, company, phone, email)
+        .then((data)=> {
+            this.modelContact.findContact(id)
+            .then((data) => {
+                View.Display(data)
+            })
+            .catch((err)=> {
+                View.Display(err)
+            })
+        })
+        .catch((err)=>{
+            View.Display(err)
+        })
     }
 
-
+    // delete contact promise
     deleteContact() {
         let id      = this._argv[1];
         this.modelContact.deleteContact(id)
