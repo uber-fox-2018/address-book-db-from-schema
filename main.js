@@ -11,32 +11,30 @@ if (command == 'help'){
   if (target == 'contact'){
     Contact.insert(input);
   } else if (target == 'group'){
-
-  } else if (target == 'contactGroup'){
-
+    Group.insert(input[0]);
+  } else if (target == 'contactToGroup'){
+    ContactGroup.insert(input);
   }
 } else if (command == 'update'){
   if (target == 'contact'){
-    Contact.update(input)
+    Contact.update(input);
   } else if (target == 'group'){
-
+    Group.update(input);
   } else if (target == 'contactGroup'){
-    
+    ContactGroup.update(input);
   }
 } else if (command == 'delete'){
   if (target == 'contact'){
-
+    Contact.remove(input[0]);
   } else if (target == 'group'){
-
+    Group.remove(input[0]);
   } else if (target == 'contactGroup'){
-    
+    ContactGroup.remove(input[0]);
   }
 } else if (command == 'show'){
-  if (target == 'contact'){
-
-  } else if (target == 'group'){
-
-  }
+  Contact.show(input[0]);
+} else if (command == 'find'){
+  
 } else {
   Contact.help();
 }

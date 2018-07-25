@@ -7,7 +7,7 @@ db.serialize(() => {
           (id INTEGER PRIMARY KEY AUTOINCREMENT,
           name VARCHAR(50),
           company VARCHAR(50),
-          phoneNumber VARCHAR(50),
+          phoneNumber VARCHAR(50) UNIQUE,
           address VARCHAR(100) )`, 
     (err)=> {if (err){
       return console.log(err.message);

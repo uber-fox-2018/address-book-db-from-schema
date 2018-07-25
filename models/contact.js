@@ -19,7 +19,6 @@ class Model {
     })
     let dataStr = dataValues.join(', ');
     let newContact = new Contact (dataArr);
-    console.log(newContact)
     let keys = (Object.keys(newContact)).join(', ');
     let totalData;
 
@@ -45,12 +44,41 @@ class Model {
     })
   }
 
-  static update (inputArr, cb){
-    db.run (`INSERT INTO 'Contacts' (${keys}) VALUES ('${newContact.name}', '${newContact.company}', '${newContact.phoneNumber}', '${newContact.address}')`, (err) => {
+  static update (id, inputArr, cb){
+    let arrQuery = []  
+    for (let i = 0; i < inputArr.length - 1; i+=2){
+      arrQuery.push(`${inputArr[i]} = '${inputArr[i + 1]}'`)
+    }
+    let setStr = arrQuery.join(', ');
+    let qUpdate = `UPDATE 'Contacts' SET ${setStr} WHERE id = ${id}`;
+    
+    db.run(qUpdate, (err) => {
       if (err) {
         return cb (err, null);
       } else {
-        return cb(null, {message: `${newContact} saved successfully. Total contact : ${total}`});
+        return cb(null, {message: `data with id:${id} updated succesfully`});
+      }
+    });
+  }
+
+  static remove (id, cb){
+    let qRemove = `DELETE FROM Contacts WHERE id = ${id}`
+    db.run(qRemove, (err) => {
+      if (err) {
+        return cb (err, null);
+      } else {
+        return cb(null, {message: `data with id:${id} deleted succesfully`});
+      }
+    });
+  }
+
+  static show (id, cb){
+    let qShow =`SELECT C.name, C.phoneNumber, C.address, G.name groupName FROM 'Contacts' C LEFT JOIN 'ContactGroups' CG ON C.id = CG.contactId LEFT JOIN 'Groups' G ON CG.groupId = G.id WHERE C.id = ${id}`
+    db.all(qShow, (err, rows) => {
+      if (err){
+        return cb (err, null);
+      } else {
+        return cb (null, rows)
       }
     })
   }
