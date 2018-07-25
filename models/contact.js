@@ -25,18 +25,18 @@ class Contact {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null, null)
+                callback(null, this)
             }
         })
     }
 
     static editContact(id, column, newValue, callback) {
-        let query_edit = `UPDATE Contacts SET ${column} = "${newValue}" WHERE "${id}"`
+        let query_edit = `UPDATE Contacts SET ${column} = "${newValue}" WHERE id = "${id}"`
         db.run(query_edit, function (err) {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null,null)
+                callback(null,this)
             }
         })
     }
@@ -47,7 +47,7 @@ class Contact {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null,null)
+                callback(null,this)
             }
         })
     }

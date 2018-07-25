@@ -12,6 +12,16 @@ class Controller_Contact_Group {
             }
         })
     }
+
+    static show() {
+        ContactGroup.show(function(err, data) {
+            if (err) {
+                View_Contact_Group.displayError(err)
+            } else {
+                View_Contact_Group.showContactsGroups(data)
+            }
+        })
+    }
 }
 
 module.exports = Controller_Contact_Group

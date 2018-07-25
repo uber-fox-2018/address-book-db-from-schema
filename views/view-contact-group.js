@@ -1,6 +1,6 @@
 class View_Contact_Group {
-    static displayMessage(data) {
-        console.log(data)
+    static showContactsGroups(data) {
+        console.table(data)
     }
 
     static displayError(err) {

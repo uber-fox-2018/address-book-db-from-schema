@@ -8,7 +8,21 @@ class ContactGroup {
             if (err) {
                 callback(err,null)
             } else {
-                callback(null,null)
+                callback(null,this)
+            }
+        })
+    }
+
+    static show(callback) {
+        let query_show = `SELECT name, company_name, phone_number, email, groupName FROM Contacts
+                            INNER JOIN ContactsGroups ON Contacts.Id = ContactsGroups.contactId
+                            INNER JOIN Groups ON ContactsGroups.groupId = Groups.Id`
+
+        db.all(query_show, function(err,data) {
+            if (err) {
+                callback(err, null)
+            } else {
+                callback(null, data)
             }
         })
     }

@@ -25,7 +25,7 @@ class Group {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null, null)
+                callback(null, this)
             }
         })
     }
@@ -36,7 +36,7 @@ class Group {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null,null)
+                callback(null,this)
             }
         })
     }
@@ -47,7 +47,7 @@ class Group {
             if (err) {
                 callback(err, null)
             } else {
-                callback(null,null)
+                callback(null,this)
             }
         })
     }
