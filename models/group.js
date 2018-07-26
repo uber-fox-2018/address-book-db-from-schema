@@ -54,14 +54,23 @@ class Model {
   }
 
   static remove (id, cb){
-    let qRemove = `DELETE FROM 'Groups' WHERE id = ${id}`
-    db.run(qRemove, (err) => {
-      if (err) {
-        return cb (err, null);
-      } else {
-        return cb(null, {message: `data with id:${id} deleted succesfully`});
-      }
-    });
+    let qRemoveGroup = `DELETE FROM 'Groups' WHERE id = ${id}`
+    let qRemoveContactGroup = `DELETE FROM ContactGroups WHERE groupId = ${id}`;
+    db.serialize(()=> {
+      db.run(qRemoveContactGroup, (err) => {
+        if (err) {
+          return cb (err, null);
+        }
+      });
+
+      db.run(qRemoveGroup, (err) => {
+        if (err) {
+          return cb (err, null);
+        } else {
+          return cb(null, {message: `data with id:${id} deleted succesfully`});
+        }
+      });
+    })
   }
 }
 

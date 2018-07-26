@@ -62,19 +62,63 @@ class Model {
   }
 
   static remove (id, cb){
-    let qRemove = `DELETE FROM Contacts WHERE id = ${id}`
-    db.run(qRemove, (err) => {
-      if (err) {
-        return cb (err, null);
-      } else {
-        return cb(null, {message: `data with id:${id} deleted succesfully`});
-      }
-    });
+    let qRemoveContact = `DELETE FROM Contacts WHERE id = ${id}`;
+    let qRemoveContactGroup = `DELETE FROM ContactGroups WHERE contactId = ${id}`;
+
+    db.serialize(() => {
+      db.run(qRemoveContactGroup, (err) => {
+        if (err) {
+          return cb (err, null);
+        }
+      });
+
+      db.run(qRemoveContact, (err) => {
+        if (err) {
+          return cb (err, null);
+        } else {
+          return cb(null, {message: `data with id:${id} deleted succesfully`});
+        }
+      });
+    })
   }
 
   static show (id, cb){
     let qShow =`SELECT C.name, C.phoneNumber, C.address, G.name groupName FROM 'Contacts' C LEFT JOIN 'ContactGroups' CG ON C.id = CG.contactId LEFT JOIN 'Groups' G ON CG.groupId = G.id WHERE C.id = ${id}`
     db.all(qShow, (err, rows) => {
+      if (err){
+        return cb (err, null);
+      } else {
+        return cb (null, rows)
+      }
+    })
+  }
+
+  static find (inputArr, cb){
+    let keywords = {}
+    for (let i = 0; i < inputArr.length - 3; i+=2){
+      keywords[inputArr[i]] = inputArr[i + 1];
+    }
+    let operator = inputArr[inputArr.length - 2];
+    let option = inputArr[inputArr.length - 1];
+    let keywordArr = [];
+    let keywordStr = '';
+    
+    if (operator.toUpperCase() == 'LIKE'){
+      for (let i in keywords){
+        keywordArr.push(`C.${i} ${operator} '%${keywords[i]}%'`)
+      }
+    } else {
+      for (let i in keywords){
+        keywordArr.push(`C.${i} ${operator} '${keywords[i]}'`)
+      }
+    }
+
+    keywordStr = keywordArr.join(` ${option} `)
+
+    let qFind = `SELECT C.name, C.phoneNumber, C.address, G.name groupName FROM 'Contacts' C LEFT JOIN 'ContactGroups' CG ON C.id = CG.contactId LEFT JOIN 'Groups' G ON CG.groupId = G.id 
+    WHERE ${keywordStr}`
+
+    db.all(qFind, (err, rows)=> {
       if (err){
         return cb (err, null);
       } else {

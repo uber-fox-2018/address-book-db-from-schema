@@ -16,11 +16,12 @@ class Contact {
       `node main.js delete contact <id>`,
       `node main.js delete group <id>`,
       `node main.js delete contactGroup <id>`,
-
-      `node main.js find contact <column name> <keyword> <column name> <keyword>.... <operator> <option>`,
-      `ex: node main.js find contact name brian company hacktiv LIKE OR`,
-
+      
       `node main.js show contact <id>`,
+
+      `node main.js find contact <column name> "<keyword>" <column name> "<keyword>"... <operator> <option>`,
+      `ex: node main.js find contact name "john" company "earth" LIKE OR`,
+      `ex: node main.js find contact name "doe" company hacktiv = AND`,
     ]
     messages.forEach((message) => {
       View.display(message);
@@ -59,6 +60,16 @@ class Contact {
 
   static show (input){
     Model.show (input, (err, result)=> {
+      if (err){
+        View.display(err.message);
+      } else {
+        View.display(result);
+      }
+    })
+  }
+
+  static find (input){
+    Model.find (input, (err, result)=> {
       if (err){
         View.display(err.message);
       } else {

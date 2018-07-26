@@ -34,7 +34,7 @@ if (command == 'help'){
 } else if (command == 'show'){
   Contact.show(input[0]);
 } else if (command == 'find'){
-  
+  Contact.find(input)
 } else {
   Contact.help();
 }
